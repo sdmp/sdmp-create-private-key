@@ -1,8 +1,7 @@
 # sdmp-create-private-key
 
-This is an authoritative example of what the `private_key` container
-object implementation specified in the [SDMP](http://sdmp.io) protocol
-might look like.
+This module will create a `private_key` container object according
+to the specifications in the [SDMP](http://sdmp.io) protocol.
 
 You can call this module to get a new `private_key` object which
 conforms to the SDMP specifications, or you can pass in an existing
