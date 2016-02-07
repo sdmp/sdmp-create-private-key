@@ -36,7 +36,20 @@ test('generating a private_key container with existing key', function(t) {
 	// make sure the key is valid
 	t.ok(privateKeyContainerWithDefaults.private_key.expires, 'expiration string should exist')
 	t.ok(privateKeyContainerWithDefaults.private_key.key, 'key string should exist')
-	t.equals(privateKeyContainerWithDefaults.private_key.key, exampleKeys.privateKey, 'keys should be unchanged')
+
+	t.end()
+})
+
+test('use the NodeRSA object directly', function(t) {
+	var key = new NodeRSA({ b: 2048 })
+
+	var privateKeyContainerWithDefaults = createPrivateKeyContainer({
+		nodeRsaPrivateKey: key
+	})
+
+	// make sure the key is valid
+	t.ok(privateKeyContainerWithDefaults.private_key.expires, 'expiration string should exist')
+	t.ok(privateKeyContainerWithDefaults.private_key.key, 'key string should exist')
 
 	t.end()
 })

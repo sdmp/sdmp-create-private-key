@@ -7,19 +7,26 @@ var defaultExpirationMillis = millisInOneYear * 5
 module.exports = function(options) {
 	options = options || {}
 
-	var pemEncoded
+	var actualKey
 	if (options.privateKeyString) {
 		if (typeof options.privateKeyString !== 'string') {
 			throw 'options.privateKeyString must be typeof string'
 		}
-		var key = new NodeRSA(options.privateKeyString)
-		if (!key.isPrivate()) {
+		actualKey = new NodeRSA(options.privateKeyString)
+		if (!actualKey.isPrivate()) {
 			throw 'given key is not private'
 		}
-		pemEncoded = options.privateKeyString
+	} else if (options.nodeRsaPrivateKey) {
+		actualKey = options.nodeRsaPrivateKey
+		if (!actualKey.isPrivate()) {
+			throw 'given key is not private'
+		}
 	} else {
-		var key = new NodeRSA({ b: 2048 })
-		pemEncoded = key.exportKey('pkcs8-private-pem')
+		actualKey = new NodeRSA({ b: 2048 })
+	}
+
+	if (actualKey.getKeySize() !== 2048) {
+		throw 'key size must be `2048` but was ' + actualKey.getKeySize()
 	}
 
 	var expiration
@@ -36,7 +43,7 @@ module.exports = function(options) {
 		},
 		private_key: {
 			expires: expiration,
-			key: pemEncoded
+			key: actualKey.exportKey('pkcs8-private-pem')
 		}
 	}
 }
