@@ -13,6 +13,7 @@
     "node-rsa": "^0.3.2"
   },
   "devDependencies": {
+    "sdmp-example-keys": "^1.0.0",
     "tape": "^4.4.0"
   }
 }

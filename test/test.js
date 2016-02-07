@@ -1,5 +1,5 @@
 var createPrivateKeyContainer = require('../')
-var exampleKeys = require('./example-keys.js')
+var exampleKeys = require('sdmp-example-keys')
 var test = require('tape')
 var NodeRSA = require('node-rsa')
 
@@ -41,7 +41,7 @@ test('generating a private_key container with existing key', function(t) {
 })
 
 test('use the NodeRSA object directly', function(t) {
-	var key = new NodeRSA({ b: 2048 })
+	var key = new NodeRSA(exampleKeys.privateKey)
 
 	var privateKeyContainerWithDefaults = createPrivateKeyContainer({
 		nodeRsaPrivateKey: key
