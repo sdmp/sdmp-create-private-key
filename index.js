@@ -4,9 +4,7 @@ var moment = require('moment')
 var millisInOneYear = 365 * 24 * 60 * 60 * 1000
 var defaultExpirationMillis = millisInOneYear * 5
 
-module.exports = function(options) {
-	options = options || {}
-
+function keyFromOptions(options) {
 	var actualKey
 	if (options.privateKeyString) {
 		if (typeof options.privateKeyString !== 'string') {
@@ -24,6 +22,13 @@ module.exports = function(options) {
 	} else {
 		actualKey = new NodeRSA({ b: 2048 })
 	}
+	return actualKey
+}
+
+module.exports = function(options) {
+	options = options || {}
+
+	var actualKey = keyFromOptions(options)
 
 	if (actualKey.getKeySize() !== 2048) {
 		throw 'key size must be `2048` but was ' + actualKey.getKeySize()
