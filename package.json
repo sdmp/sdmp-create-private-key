@@ -1,6 +1,6 @@
 {
   "name": "sdmp-create-private-key",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Create a valid SDMP private_key container extension.",
   "main": "index.js",
   "scripts": {
