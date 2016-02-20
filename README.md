@@ -17,7 +17,7 @@ You must pass in a [node-rsa](https://github.com/rzcoder/node-rsa)
 object containing a private key of `2048` bits:
 
 	var create = require('sdmp-create-private-key')
-	var container = create(privateKey)
+	var container = create(nodeRsaPrivateKey)
 	// container is a valid `private_key` container object, e,g,
 	console.log(container.private_key.key) // => -----BEGIN RSA PRIVATE KEY-----...
 
@@ -27,30 +27,30 @@ The node-rsa module is an RSA crypto module implemented in pure
 JavaScript. This gives maximum portability, but generating keys
 in JS is not as fast as system-native libraries.
 
-You can create a `node-rsa` object any of the following ways:
+You can create a `node-rsa` private key object any of the following ways:
 
-### new key
+#### new key
 
 	var NodeRSA = require('node-rsa')
-	var privateKey = new NodeRSA({ b: 2048 })
+	var nodeRsaPrivateKey = new NodeRSA({ b: 2048 })
 
-### from PEM encoded string
+#### from PEM encoded string
 
 	var NodeRSA = require('node-rsa')
 	var pemKey = '-----BEGIN RSA PRIVATE KEY-----\n...'
-	var privateKey = new NodeRSA(pemKey)
+	var nodeRsaPrivateKey = new NodeRSA(pemKey)
 
-## api `create(privateKey[, unixOffsetToExpire])`
+## api `create(nodeRsaPrivateKey[, unixOffsetToExpire])`
 
 In all cases, calling the function will either return a new
 container object, or throw an exception.
 
-###### `privateKey` *(required)*
+###### `nodeRsaPrivateKey` *(`object`, required)*
 
-The parameter `privateKey` must be a [node-rsa](https://github.com/rzcoder/node-rsa)
+The parameter `nodeRsaPrivateKey` must be a [node-rsa](https://github.com/rzcoder/node-rsa)
 equivalent object, containing a private key of `2048` bytes.
 
-###### `unixOffsetToExpire` *(optional, `integer`)*
+###### `unixOffsetToExpire` *(`integer`, optional)*
 
 Pass in the unix offset (milliseconds since Unix Epoch) and the
 UTC expiration date will be set to that exact date.

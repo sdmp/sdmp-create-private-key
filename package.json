@@ -1,6 +1,6 @@
 {
   "name": "sdmp-create-private-key",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Create a valid SDMP `private_key` container.",
   "main": "index.js",
   "scripts": {
@@ -9,10 +9,10 @@
   "author": "saibotsivad",
   "license": "VOL",
   "dependencies": {
-    "moment": "2.11.1",
-    "node-rsa": "0.3.2"
+    "moment": "2.11.1"
   },
   "devDependencies": {
+    "node-rsa": "0.3.2",
     "sdmp-example-keys": "^1.0.0",
     "tape": "4.4.0"
   }
